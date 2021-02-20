@@ -2,10 +2,15 @@ import React,{useState} from 'react'
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import {Link, Redirect} from 'react-router-dom'
 import '../assests/messages.css'
+import Loader from "../Components/Loader";
+
  
 export default function Login( {history} ) {
     // INPUT VALUES
     const [inputs,setInputs] = useState({});
+
+    // LOADING  STATE
+    const [isLoading, setIsLoading] = useState(false)
 
     // HANDLE CHANGE
     const handleInputChange = (event) => {
@@ -44,15 +49,55 @@ export default function Login( {history} ) {
     }
 
     // SUBMIT
-    const handleSubmit = () => {
+    async function handleSubmit(){
         setIsSubmitted(true)
         const err = validate(inputs)
         if(Object.keys(err).length === 0){
-            return history.push("/home")
+            setIsLoading(true)
+           await setTimeout(() => {
+                  setIsLoading(false)
+                  return history.push("/home")
+                }, 2000);
         }else{
             setError(err)
             // console.log(error)
         }
+      }
+
+    //LOGIN FORM  
+    const loginForm = () =>{
+          return(
+              <div>
+              <div className="text-center bg-dark text-white py-2">
+              <h4 className="font-weight-bold mt-2">ReactDoc</h4>
+              <p><small><strong> To continue, Sign in to ReactDoc </strong> </small> </p>
+          </div>
+
+      <Form className="border p-4">
+          <FormGroup>
+              <Label>Email</Label>
+              <Input type="email" name="email" placeholder="Enter Email" value={inputs.email} onChange={handleInputChange} />
+              {isSubmitted && error.email ? <p className="error-message">{error.email}</p> : '' }
+          </FormGroup>
+          <FormGroup>
+              <Label>Password</Label>
+              <Input type="password" name="password" placeholder="Enter Password" value={inputs.password} onChange={handleInputChange} />
+              {isSubmitted && error.password ? <p className="error-message">{error.password}</p> : ''}
+          </FormGroup>
+          <FormGroup>
+              <Button block className="bg-dark font-weight-bold py-2" onClick={handleSubmit}>Login</Button>
+          </FormGroup>  
+          
+          <div className="text-center mt-4">
+              If you dont have account?
+              <Link to="/signup" className="ml-2">Create Account</Link>
+          </div>
+              
+      </Form>
+              </div>
+            
+
+          )
       }
 
     return (
@@ -60,33 +105,9 @@ export default function Login( {history} ) {
             <div className="row-size row justify-content-center align-items-center m-0 pt-5">
             
                     <div className="column col-sm-12 col-md-3 mt-5 ">
-                        <div className="text-center bg-dark text-white py-2">
-                            <h4 className="font-weight-bold mt-2">ReactDoc</h4>
-                            <p><small><strong> To continue, Sign in to ReactDoc </strong> </small> </p>
-                        </div>
-
-                    <Form className="border p-4">
-                        <FormGroup>
-                            <Label>Email</Label>
-                            <Input type="email" name="email" placeholder="Enter Email" value={inputs.email} onChange={handleInputChange} />
-                            {isSubmitted && error.email ? <p className="error-message">{error.email}</p> : '' }
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Password</Label>
-                            <Input type="password" name="password" placeholder="Enter Password" value={inputs.password} onChange={handleInputChange} />
-                            {isSubmitted && error.password ? <p className="error-message">{error.password}</p> : ''}
-                        </FormGroup>
-                        <FormGroup>
-                            <Button block className="bg-dark font-weight-bold py-2" onClick={handleSubmit}>Login</Button>
-                        </FormGroup>  
-                        
-                        <div className="text-center mt-4">
-                            If you dont have account?
-                            <Link to="/signup" className="ml-2">Create Account</Link>
-                        </div>
-                            
-                    </Form>
-                    
+                        {isLoading && <Loader />}       
+                        {!isLoading && loginForm()}
+                                            
                 </div>
             </div>
         </div>

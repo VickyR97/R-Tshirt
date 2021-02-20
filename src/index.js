@@ -4,9 +4,19 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from "./routes/index";
+import {createStore} from 'redux'
+import allReducers from './store/reducers/index'
+import { Provider } from "react-redux";
+
+const myStore = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 
 ReactDOM.render(
-    <Routes />,
+  <Provider store={myStore}>
+    <Routes />
+  </Provider>,
   document.getElementById('root')
 );
 

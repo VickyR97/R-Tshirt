@@ -3,11 +3,16 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {Link, Redirect} from 'react-router-dom'
 import '../assests/messages.css'
 import '../assests/sizing.css'
+import Loader from "../Components/Loader";
+
 
 const Signup = ({history}) => {
 
     // INPUT VALUES
     const [inputs,setInputs] = useState({});
+
+    // LOADING  STATE
+    const [isLoading, setIsLoading] = useState(false)
 
     // HANDLE CHANGE
     const handleInputChange = (event) => {
@@ -55,57 +60,70 @@ const Signup = ({history}) => {
     }
 
     // SUBMIT
-    const handleSubmit = () => {
+    async function handleSubmit(){
         setIsSubmitted(true)
         const err = validate(inputs)
         if(Object.keys(err).length === 0){
-            return history.push("/login")
+            setIsLoading(true)
+           await setTimeout(() => {
+                  setIsLoading(false)
+                  return history.push("/login")
+                }, 2000);
         }else{
             setError(err)
             // console.log(error)
         }
       }
 
+    const signupForm = () =>{
+        return(
+                <div>
+                <div className="text-center bg-dark text-white py-2">
+                    <h4 className="font-weight-bold mt-2">Signup</h4>
+                    <p><small><strong> Create your account in ReactDoc </strong> </small> </p>
+                </div>
+
+            <Form className="border p-4">
+                <FormGroup>
+                    <Label>Email</Label>
+                    <Input type="email" name="email" placeholder="Enter Email" onChange={handleInputChange} />
+                    {isSubmitted && error.email ? <p className="error-message">{error.email}</p> : '' }
+                </FormGroup>
+                <FormGroup>
+                    <Label>Password</Label>
+                    <Input type={showPassword ? 'text' : 'password'} name="password" placeholder="Enter Password" onChange={handleInputChange} />
+                    {isSubmitted && error.password ? <p className="error-message">{error.password}</p> : ''}
+                </FormGroup>
+                <FormGroup check className="mb-3 mt-4">
+                    <Input type="checkbox" name="check" id="exampleCheck" onClick={()=> {setShowPassword(!showPassword)}} />
+                    <Label for="exampleCheck" check>Show Password</Label>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Confirm Password</Label>
+                    <Input type={showPassword ? 'text' : 'password'} name="confirmPassword" placeholder="Confirm Password" onChange={handleInputChange} />
+                    {isSubmitted && error.confirmPassword ? <p className="error-message">{error.confirmPassword}</p> : ''}
+                </FormGroup>
+                <FormGroup>
+                    <Button block className="bg-dark font-weight-bold py-2" onClick={handleSubmit}>Sign Up</Button>
+                </FormGroup>  
+                
+                <div class="text-center mt-4">
+                    Already registered
+                    <Link to="/login" className="ml-2">Sign in?</Link>
+                </div>
+                    
+            </Form>
+            </div>
+            
+        )
+    }    
     return (
         <div className="container-fluid p-0">
             <div className="row-size row justify-content-center align-items-center m-0 pt-5">
             
                     <div className="column col-sm-12 col-md-3 col-xs-4 mt-5 p-0">
-                        <div className="text-center bg-dark text-white py-2">
-                            <h4 className="font-weight-bold mt-2">Signup</h4>
-                            <p><small><strong> Create your account in ReactDoc </strong> </small> </p>
-                        </div>
-
-                    <Form className="border p-4">
-                        <FormGroup>
-                            <Label>Email</Label>
-                            <Input type="email" name="email" placeholder="Enter Email" onChange={handleInputChange} />
-                            {isSubmitted && error.email ? <p className="error-message">{error.email}</p> : '' }
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Password</Label>
-                            <Input type={showPassword ? 'text' : 'password'} name="password" placeholder="Enter Password" onChange={handleInputChange} />
-                            {isSubmitted && error.password ? <p className="error-message">{error.password}</p> : ''}
-                        </FormGroup>
-                        <FormGroup check className="mb-3 mt-4">
-                            <Input type="checkbox" name="check" id="exampleCheck" onClick={()=> {setShowPassword(!showPassword)}} />
-                            <Label for="exampleCheck" check>Show Password</Label>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Confirm Password</Label>
-                            <Input type={showPassword ? 'text' : 'password'} name="confirmPassword" placeholder="Confirm Password" onChange={handleInputChange} />
-                            {isSubmitted && error.confirmPassword ? <p className="error-message">{error.confirmPassword}</p> : ''}
-                        </FormGroup>
-                        <FormGroup>
-                            <Button block className="bg-dark font-weight-bold py-2" onClick={handleSubmit}>Sign Up</Button>
-                        </FormGroup>  
-                        
-                        <div class="text-center mt-4">
-                            Already registered
-                            <Link to="/login" className="ml-2">Sign in?</Link>
-                        </div>
-                            
-                    </Form>
+                        {isLoading && <Loader />}
+                        {!isLoading && signupForm()}
                     
                 </div>
             </div>
