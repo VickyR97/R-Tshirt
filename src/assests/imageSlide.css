@@ -26,7 +26,10 @@
   background-image: url('../assests/tshirt-images/Family.jpg');
   position: relative;
 }
-
+.slide4{
+  background-image: url('../assests/tshirt-images/month.jpg');
+  position: relative;
+}
 .buy-btn{
     position: absolute;
     bottom: 40px;
