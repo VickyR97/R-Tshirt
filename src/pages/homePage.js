@@ -22,15 +22,19 @@ export default function HomePage() {
                 <p className="py-2 ml-3 font-weight-bold mb-0">FEATURED PRODUCTS</p>
             </div>
             <div className="row">
-                {product && product.map((element)=>{
+                {product && product.map((element,index)=>{
                     return(
                     <div className="col-12 col-md-3">
                         <Card
+                        key={index}
+                        id={index}
                         imgSrc={element.imgSrc}
                         name = {element.name}
                         subTitle = {element.subTitle}
                         description = {element.description}
                         price = {element.price}
+                        tax = {element.tax}
+                        shipping = {element.shipping}
                         />
                      </div>
                      )

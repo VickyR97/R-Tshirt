@@ -23,7 +23,7 @@ export default function Header({
         <Navbar color="dark" dark expand="md" className="container">
         <NavbarBrand href="/" className="font-weight-bold pl-md-4 py-2">{brand}</NavbarBrand>
         <div className="ml-auto py-2">
-            <Link to="/cart" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length-1})</Link> 
+            <Link to="/cart" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length})</Link> 
             <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Login</Link> 
             <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Signup</Link> 
         </div>

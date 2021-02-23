@@ -9,11 +9,14 @@ import {
 import "../assests/card.css"
   
 export default function Cards({
+    id = 0,
     imgSrc = "...",
     name = "Product name",
     subTitle = "Card subtitle",
     description = "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    price = 200
+    price = 200,
+    tax = 0,
+    shipping = 0
 }) {
 
     const dispatch = useDispatch()
@@ -36,10 +39,14 @@ export default function Cards({
                         onClick={()=>{
                             dispatch(cartIncrement())
                             let cartItems = {
+                                productId: id,
+                                productImage : imgSrc,
                                 productName : name,
                                 productSubTitle : subTitle,
                                 productDescription : description,
-                                productPrice : price
+                                productPrice : price,
+                                productTax: tax,
+                                productShipping: shipping
                             }
                             dispatch(cartadd(cartItems))
                             console.log(cartItems)

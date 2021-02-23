@@ -22,3 +22,10 @@ export const cartadd = (cartItems) =>{
         payload: cartItems
     }
 }
+
+export const cartRemove = (productId) =>{
+    return{
+        type: 'CART_REMOVE',
+        payload: productId
+    }
+}

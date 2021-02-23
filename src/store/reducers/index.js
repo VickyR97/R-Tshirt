@@ -8,7 +8,7 @@ const allReducers = combineReducers({
     counter: counterReducer,
     isLogged: isLoggedReducer,
     cartCount: cartReducer,
-    cartList: cartAdd
+    cartList: cartAdd,
 })
 
 export default allReducers
