@@ -69,7 +69,7 @@ export default function Login( {history} ) {
           return(
               <div>
               <div className="text-center bg-dark text-white py-2">
-              <h4 className="font-weight-bold mt-2">ReactDoc</h4>
+              <h4 className="font-weight-bold mt-2">T-Shop</h4>
               <p><small><strong> To continue, Sign in to ReactDoc </strong> </small> </p>
           </div>
 

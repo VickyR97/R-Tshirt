@@ -79,8 +79,8 @@ const Signup = ({history}) => {
         return(
                 <div>
                 <div className="text-center bg-dark text-white py-2">
-                    <h4 className="font-weight-bold mt-2">Signup</h4>
-                    <p><small><strong> Create your account in ReactDoc </strong> </small> </p>
+                    <h4 className="font-weight-bold mt-2">T-Shop</h4>
+                    <p><small><strong> Create your account in T-Shop </strong> </small> </p>
                 </div>
 
             <Form className="border p-4">
