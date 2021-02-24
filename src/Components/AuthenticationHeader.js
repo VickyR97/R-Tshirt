@@ -25,7 +25,7 @@ export default function Header({
         <div className="ml-auto py-2">
             <Link to="/cart" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length})</Link> 
             <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Login</Link> 
-            <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Signup</Link> 
+            <Link to="/signup" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Signup</Link> 
         </div>
         </Navbar>
         </div>

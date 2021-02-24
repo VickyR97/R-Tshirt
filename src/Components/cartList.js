@@ -5,9 +5,7 @@ import {
   } from 'reactstrap';
 import {useSelector, useDispatch} from 'react-redux'
 import { cartRemove } from "../store/actions/index";
-
-
-
+import "../assests/cart.css";
 
 export default function CartList({
     id = 0,
@@ -23,10 +21,10 @@ export default function CartList({
     return (
         <div className="container-fluid">
             <div className="row border rounded align-items-center mb-3">
-                <div className="col-12 col-md-4 p-2">
+                <div className="col-12 col-md-5 p-2">
                     <img height="211" width="200" src={imgSrc} alt="Card image cap" />
                 </div>
-                <div className="col-12 col-md-8 col-md-offset-4 p-2">
+                <div className="col-12 col-md-7 col-md-offset-4 p-2">
                     <CardBody>
                         <CardTitle tag="h5">{name}</CardTitle>
                         <CardSubtitle tag="h6" className="mb-2 text-muted">{subTitle}</CardSubtitle>

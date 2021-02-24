@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from '../Components/AuthenticationHeader'
 import {useSelector, useDispatch} from 'react-redux'
-// import { increment } from "../store/actions/index";
 import ImageSlider from "../Components/ImageSlider";
 import Card from "../Components/Cards";
 import {product}  from "../assests/files/products.js";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const dispatch = useDispatch()

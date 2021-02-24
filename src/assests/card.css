@@ -3,3 +3,12 @@
     -moz-box-shadow: -1px 2px 40px -7px rgba(201,201,201,1);
     box-shadow: -1px 2px 40px -7px rgba(201,201,201,1);
 }
+
+@media (max-width: 900px) {
+    .cart-buttons{
+        
+    }
+   .cart-button{
+       /* min-width: 200px; */
+   }
+}

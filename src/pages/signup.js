@@ -5,7 +5,6 @@ import '../assests/messages.css'
 import '../assests/sizing.css'
 import Loader from "../Components/Loader";
 
-
 const Signup = ({history}) => {
 
     // INPUT VALUES
@@ -109,7 +108,7 @@ const Signup = ({history}) => {
                 
                 <div class="text-center mt-4">
                     Already registered
-                    <Link to="/login" className="ml-2">Sign in?</Link>
+                    <Link to="/login" className="ml-2 text-decoration-none">Sign in?</Link>
                 </div>
                     
             </Form>
@@ -119,7 +118,7 @@ const Signup = ({history}) => {
     }    
     return (
         <div className="container-fluid p-0">
-            <div className="row-size row justify-content-center align-items-center m-0 pt-5">
+            <div className="row justify-content-center align-items-center m-0 pt-5 px-3">
             
                     <div className="column col-sm-12 col-md-3 col-xs-4 mt-5 p-0">
                         {isLoading && <Loader />}

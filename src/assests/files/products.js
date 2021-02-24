@@ -8,8 +8,8 @@ export const product = [
     {
         id: 1,
         name : "AA Tshirt",
-        subTitle : "Summer Collection",
-        description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Summer",
+        subTitle : "Actors Collection",
+        description: "Buy stylish and fashionable Allu Arjun T-shirt from official fashion partner Starobe.",
         price: 899,
         tax: 70,
         shipping: 50,
@@ -19,18 +19,18 @@ export const product = [
         id: 2,
         name : "Wolf Tshirt",
         subTitle : "Anime Collection",
-        description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Summer",
-        price: 500,
+        description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Rugged",
+        price: 699,
         tax: 50,
         shipping: 50,
         imgSrc: wolf
     },
     {
         id: 3,
-        name : "violet",
-        subTitle : "Summer Collection",
-        description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Summer",
-        price: 500,
+        name : "Violet",
+        subTitle : "Winter Collection",
+        description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Winter",
+        price: 499,
         tax: 50,
         shipping: 50,
         imgSrc: violet
@@ -40,7 +40,7 @@ export const product = [
         name : "2021 senior",
         subTitle : "Summer Collection",
         description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Summer",
-        price: 500,
+        price: 599,
         tax: 50,
         shipping: 50,
         imgSrc: USA
@@ -50,7 +50,7 @@ export const product = [
         name : "HUNT",
         subTitle : "Summer Collection",
         description: "T shape of its body and sleeves 31 T-Shirt DIYs That Are Perfect For Summer",
-        price: 500,
+        price: 799,
         tax: 50,
         shipping: 50,
         imgSrc: senior

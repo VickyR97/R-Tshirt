@@ -29,3 +29,10 @@ export const cartRemove = (productId) =>{
         payload: productId
     }
 }
+
+export const productDetail = (productDetail) =>{
+    return{
+        type: 'PRODUCT_DETAIL',
+        payload: productDetail
+    }
+}

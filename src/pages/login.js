@@ -1,16 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import {Link, Redirect} from 'react-router-dom'
 import '../assests/messages.css'
 import Loader from "../Components/Loader";
 
- 
 export default function Login( {history} ) {
     // INPUT VALUES
     const [inputs,setInputs] = useState({});
 
     // LOADING  STATE
     const [isLoading, setIsLoading] = useState(false)
+
 
     // HANDLE CHANGE
     const handleInputChange = (event) => {
@@ -90,7 +90,7 @@ export default function Login( {history} ) {
           
           <div className="text-center mt-4">
               If you dont have account?
-              <Link to="/signup" className="ml-2">Create Account</Link>
+              <Link to="/signup" className="ml-2 text-decoration-none">Create Account</Link>
           </div>
               
       </Form>

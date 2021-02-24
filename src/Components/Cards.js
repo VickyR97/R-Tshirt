@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { cartIncrement, cartadd } from "../store/actions/index";
+import { cartIncrement, cartadd, productDetail } from "../store/actions/index";
+import {useHistory} from 'react-router-dom'
 
 import {
     Card, CardImg, CardText, CardBody,
@@ -20,10 +21,16 @@ export default function Cards({
 }) {
 
     const dispatch = useDispatch()
+    let history = useHistory()
+
 
     const cart = <svg className="mr-2 mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                 </svg>
+
+    function HandleClick() {
+        history.push(`/product/${name}`)
+  }
 
     return (
         <div>
@@ -35,7 +42,8 @@ export default function Cards({
                     <CardText>{description}</CardText>
                     <div className="addToCart">
                         <h4 className="font-weight-bold"> &#x20B9;{price}</h4>
-                        <Button className="font-weight-bold btn btn-warning" 
+                        <div className="cart-button d-flex justify-content-between">
+                        <Button className="cart-button font-weight-bold btn btn-warning" 
                         onClick={()=>{
                             dispatch(cartIncrement())
                             let cartItems = {
@@ -49,9 +57,26 @@ export default function Cards({
                                 productShipping: shipping
                             }
                             dispatch(cartadd(cartItems))
-                            console.log(cartItems)
+                            // console.log(cartItems)
                         }}
                         >{cart}Add to cart</Button>
+                        <button className="btn btn-dark"
+                        onClick={()=>{
+                            let cartItems = {
+                                productId: id,
+                                productImage : imgSrc,
+                                productName : name,
+                                productSubTitle : subTitle,
+                                productDescription : description,
+                                productPrice : price,
+                                productTax: tax,
+                                productShipping: shipping
+                            }
+                            dispatch(productDetail(cartItems))
+                            history.push(`/product/${name}`)
+                        }}
+                        >Details</button>
+                        </div>
                     </div>
                     
                 </CardBody>
