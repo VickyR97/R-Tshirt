@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {
     Navbar,
     NavbarBrand,
@@ -6,6 +6,11 @@ import {
   } from 'reactstrap';
 import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
+import fire from "../config/firebase";
+
+import {useDispatch} from 'react-redux'
+import { logout } from "../store/actions/index";
+
 
 export default function Header({
     brand="Brand"
@@ -16,16 +21,47 @@ export default function Header({
 
     const cartList = useSelector(state => state.cartList)
     const cartCount = useSelector(state => state.cartCount)
-    
+    const [user, setUser] = useState({})
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        fire.auth().onAuthStateChanged(users =>{
+            if(users){
+                setUser({...user, email: users.email})
+            }
+        })
+    }, [])
+    const logout = async () =>{
+        await fire.auth().signOut()
+            .then(response =>{
+                setUser({})
+                // dispatch(logout())
+                // console.log("Logged Out Suucessfully...")
+            })
+            .catch(err =>{
+                console.log("Logout Error", err)
+            })
+    }
+
 
     return (
         <div className="sticky-top bg-dark">
         <Navbar color="dark" dark expand="md" className="container">
         <NavbarBrand href="/" className="font-weight-bold pl-md-4 py-2">{brand}</NavbarBrand>
-        <div className="ml-auto py-2">
-            <Link to="/cart" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length})</Link> 
-            <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Login</Link> 
-            <Link to="/signup" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Signup</Link> 
+        <div className="ml-auto py-2 d-flex">
+            <Link to={user.email ? "/cart" : "/cart" } className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length})</Link> 
+            { user.email ? 
+                (
+                <div>
+                    <Link to="/home" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none" onClick={logout}>Logout</Link> 
+                </div>
+                ) : (
+                    <div>
+                        <Link to="/login" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Login</Link> 
+                        <Link to="/signup" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">Signup</Link>
+                    </div>
+                    )}
         </div>
         </Navbar>
         </div>

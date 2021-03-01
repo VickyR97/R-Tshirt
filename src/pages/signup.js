@@ -4,6 +4,7 @@ import {Link, Redirect} from 'react-router-dom'
 import '../assests/messages.css'
 import '../assests/sizing.css'
 import Loader from "../Components/Loader";
+import fire from "../config/firebase";
 
 const Signup = ({history}) => {
 
@@ -44,8 +45,8 @@ const Signup = ({history}) => {
        //Password Errors
        if(!inputs.password){
            errors.password = 'Password is required'
-       }else if(inputs.password.length < 4){
-           errors.password = 'Password length must have 4'
+       }else if(inputs.password.length < 6){
+           errors.password = 'Password should be at least 6 characters'
        }
 
        //Confirm password Errors
@@ -64,10 +65,19 @@ const Signup = ({history}) => {
         const err = validate(inputs)
         if(Object.keys(err).length === 0){
             setIsLoading(true)
-           await setTimeout(() => {
-                  setIsLoading(false)
-                  return history.push("/login")
-                }, 2000);
+
+            // USER CREATION
+            fire.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+                        .then(response =>{
+                                      setIsLoading(false)
+                                      return history.push("/login")
+                            // console.log("Signed up  successfully...")
+                        })
+                        .catch(err =>{
+                            setIsLoading(false)
+                            // console.log("LOGIN-ERROR", err.message)
+                            setError({...error, signUpError : err.message})
+                        })
         }else{
             setError(err)
             // console.log(error)
@@ -83,6 +93,7 @@ const Signup = ({history}) => {
                 </div>
 
             <Form className="border p-4">
+                {isSubmitted && error.signUpError ? <p className="error-message">{error.signUpError}</p> : '' }
                 <FormGroup>
                     <Label>Email</Label>
                     <Input type="email" name="email" placeholder="Enter Email" onChange={handleInputChange} />

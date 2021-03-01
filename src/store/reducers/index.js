@@ -3,6 +3,7 @@ import isLoggedReducer from "./isLoggedReducer";
 import cartReducer from "../reducers/cartReducer";
 import cartAdd from "../reducers/cartAddedReducer";
 import productDetail from "../reducers/productDetailReducer";
+import isAuthenticated from "../reducers/authenticatedReducere";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -10,7 +11,8 @@ const allReducers = combineReducers({
     isLogged: isLoggedReducer,
     cartCount: cartReducer,
     cartList: cartAdd,
-    productDetail: productDetail
+    productDetail: productDetail,
+    isAuthenticated: isAuthenticated
 })
 
 export default allReducers

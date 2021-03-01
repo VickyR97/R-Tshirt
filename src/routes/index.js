@@ -6,6 +6,7 @@ import signup from "../pages/signup"
 import error from "../pages/error";
 import cart from "../pages/cart";
 import productDetail from  "../pages/productDetails"
+import ProtectedRoute from '../Components/ProtectedRoute';
 
 export default function Routes() {
     return (
@@ -17,7 +18,7 @@ export default function Routes() {
                     <Route path="/signup" exact component={signup}></Route>
                     <Route path="/home" exact component={Home}></Route>
                     <Route path="/error" exact component={error}></Route>
-                    <Route path="/cart" exact component={cart}></Route>
+                    <Route exact path="/cart" component={cart} />
                     <Route path="/product/:id" exact component={productDetail}></Route>
                     <Redirect to='/error' />
                 </Switch>
