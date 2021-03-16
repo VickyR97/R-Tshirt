@@ -128,15 +128,9 @@ const Signup = ({history}) => {
         )
     }    
     return (
-        <div className="container-fluid p-0">
-            <div className="row justify-content-center align-items-center m-0 pt-5 px-3">
-            
-                    <div className="column col-sm-12 col-md-3 col-xs-4 mt-5 p-0">
-                        {isLoading && <Loader />}
-                        {!isLoading && signupForm()}
-                    
-                </div>
-            </div>
+        <div>
+            {isLoading && <Loader />}
+            {!isLoading && signupForm()}
         </div>
     )
 }

@@ -74,15 +74,15 @@ export default function Cards({
                     <CardText>{description}</CardText>
                     <div className="addToCart">
                         <h4 className="font-weight-bold"> &#x20B9;{price}</h4>
-                        <div className="cart-button d-flex justify-content-between">
+                        <div className="d-flex flex-column">
                         
-                        <Button className="cart-button font-weight-bold btn btn-warning" 
+                        <Button className="font-weight-bold btn btn-warning btn-block my-2" 
                         onClick={cartAdd}
                         >
                         {cart}Add to cart
                         </Button>
                         
-                        <button className="btn btn-dark"
+                        <button className="btn btn-dark my-1"
                         onClick={details}
                         >
                         Details

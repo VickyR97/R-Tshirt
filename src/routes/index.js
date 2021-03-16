@@ -7,6 +7,7 @@ import error from "../pages/error";
 import cart from "../pages/cart";
 import productDetail from  "../pages/productDetails"
 import ProtectedRoute from '../Components/ProtectedRoute';
+import LoginRoute from '../Components/LoginRoute';
 
 
 export default function Routes({authenticate = false}) {
@@ -15,9 +16,10 @@ export default function Routes({authenticate = false}) {
         <div>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/login" exact component={login}></Route>
+                    <LoginRoute path="/login" exact component={login}></LoginRoute>
+                    <LoginRoute path="/signup" exact component={signup}></LoginRoute>
+
                     <Route path="/" exact component={Home}></Route>
-                    <Route path="/signup" exact component={signup}></Route>
                     <Route path="/home" exact component={Home}></Route>
                     <Route path="/error" exact component={error}></Route>
 

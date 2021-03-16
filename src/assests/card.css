@@ -4,11 +4,21 @@
     box-shadow: -1px 2px 40px -7px rgba(201,201,201,1);
 }
 
-@media (max-width: 900px) {
-    .cart-buttons{
-        
+/* @media (max-width: 999px) {
+    .button-div{
+        display: flex;
+        flex-direction: column;
     }
-   .cart-button{
-       /* min-width: 200px; */
-   }
+    .cart-button{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }
+
+@media (min-width: 1000px) {
+    .button-div{
+        display: flex;
+        justify-content: space-between;
+        margin: 0px;
+    }
+} */

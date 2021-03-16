@@ -4,6 +4,7 @@ import ImageSlider from "../Components/ImageSlider";
 import Card from "../Components/Cards";
 import {product}  from "../assests/files/products.js";
 import {offers}  from "../assests/files/offerProducts";
+import '../assests/home.css'
 
 export default function HomePage() {
     return (
@@ -20,10 +21,10 @@ export default function HomePage() {
             <div className="bg-dark text-white mt-3">
                 <p className="py-2 ml-3 font-weight-bold mb-0">FEATURED PRODUCTS</p>
             </div>
-            <div className="row">
+            <div className="display-row row d-flex">
                 {product && product.map((element,index)=>{
                     return(
-                    <div className="col-12 col-md-3">
+                    <div className="col-12 col-sm-12 col-md-3">
                         <Card
                         key={index}
                         id={index}
