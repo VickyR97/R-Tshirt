@@ -1,13 +1,11 @@
 import React from 'react'
 import Header from '../Components/AuthenticationHeader'
-import {useSelector, useDispatch} from 'react-redux'
 import ImageSlider from "../Components/ImageSlider";
 import Card from "../Components/Cards";
 import {product}  from "../assests/files/products.js";
-import { Link } from "react-router-dom";
+import {offers}  from "../assests/files/offerProducts";
 
 export default function HomePage() {
-    const dispatch = useDispatch()
     return (
         <div>
             <Header 
@@ -16,6 +14,7 @@ export default function HomePage() {
             <div className="container mt-5">
                 <ImageSlider
                 button_text="Buy now!"
+                offers={offers}
                 />
             
             <div className="bg-dark text-white mt-3">

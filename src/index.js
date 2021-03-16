@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Routes from "./routes/index";
+// import Routes from "./routes/index";
+import App from "./App";
 import {createStore} from 'redux'
 import allReducers from './store/reducers/index'
 import { Provider } from "react-redux";
@@ -15,7 +16,7 @@ const myStore = createStore(
 
 ReactDOM.render(
   <Provider store={myStore}>
-    <Routes />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

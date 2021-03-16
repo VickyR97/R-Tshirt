@@ -1,11 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {
-    Card, CardImg, CardText, CardBody,
+    CardText, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
-import {useSelector, useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 import { cartadd, cartIncrement } from "../store/actions/index";
 import "../assests/cart.css";
+import {isAuth} from '../App'
 
 function ProductDetail({
     id = 0,
@@ -22,6 +24,28 @@ function ProductDetail({
                 </svg>
 
     const dispatch = useDispatch()    
+    let history = useHistory()
+    const isAuthenticated = useContext(isAuth)
+
+    const cartAdd = () =>{
+        if(isAuthenticated){
+            dispatch(cartIncrement())
+            let cartItems = {
+                productId: id,
+                productImage : imgSrc,
+                productName : name,
+                productSubTitle : subTitle,
+                productDescription : description,
+                productPrice : price,
+                productTax: tax,
+                productShipping: shipping
+            }
+            dispatch(cartadd(cartItems))                    
+        }else{
+            history.push('/login')
+        }
+        
+    }
 
     return (
         <div className="container-fluid p-0">
@@ -38,21 +62,10 @@ function ProductDetail({
                         <p className="pt-2"> Tax: &#x20B9; {tax}</p>
                         <p> Shipping cost: &#x20B9; {shipping}</p>
                         <Button className="btn btn-warning font-weight-bold"
-                        onClick={()=>{
-                            dispatch(cartIncrement())
-                            let cartItems = {
-                                productId: id,
-                                productImage : imgSrc,
-                                productName : name,
-                                productSubTitle : subTitle,
-                                productDescription : description,
-                                productPrice : price,
-                                productTax: tax,
-                                productShipping: shipping
-                            }
-                            dispatch(cartadd(cartItems))
-                        }}
-                        >{cart} Add to cart</Button>
+                        onClick={cartAdd}
+                        >
+                        {cart} Add to cart
+                        </Button>
                     </CardBody>
                 </div>
             </div>

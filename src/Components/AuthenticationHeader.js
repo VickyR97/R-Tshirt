@@ -1,15 +1,14 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import {
     Navbar,
     NavbarBrand,
-    Button
   } from 'reactstrap';
 import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import fire from "../config/firebase";
 
 import {useDispatch} from 'react-redux'
-import { logout } from "../store/actions/index";
+import {isAuth} from '../App'
 
 
 export default function Header({
@@ -24,14 +23,8 @@ export default function Header({
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
 
+    const isAuthenticated = useContext(isAuth)
 
-    useEffect(() => {
-        fire.auth().onAuthStateChanged(users =>{
-            if(users){
-                setUser({...user, email: users.email})
-            }
-        })
-    }, [])
     const logout = async () =>{
         await fire.auth().signOut()
             .then(response =>{
@@ -51,7 +44,7 @@ export default function Header({
         <NavbarBrand href="/" className="font-weight-bold pl-md-4 py-2">{brand}</NavbarBrand>
         <div className="ml-auto py-2 d-flex">
             <Link to={user.email ? "/cart" : "/cart" } className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none">{cart} cart ({cartList.length})</Link> 
-            { user.email ? 
+            { isAuthenticated ? 
                 (
                 <div>
                     <Link to="/home" className="mr-md-5 mr-3 font-weight-bold text-white text-decoration-none" onClick={logout}>Logout</Link> 

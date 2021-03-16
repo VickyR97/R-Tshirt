@@ -9,7 +9,7 @@ export const product = [
         id: 1,
         name : "AA Tshirt",
         subTitle : "Actors Collection",
-        description: "Buy stylish and fashionable Allu Arjun T-shirt from official fashion partner Starobe.",
+        description: "Buy stylish and fashionable Allu Arjun T-shirt from official fashion partner.",
         price: 899,
         tax: 70,
         shipping: 50,
