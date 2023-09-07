@@ -15,7 +15,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
-    "react-slideshow-image": "^3.4.3",
+    "react-slideshow-image": "^3.7.5",
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
     "web-vitals": "^1.1.0",
